@@ -1,0 +1,139 @@
+/* =========================================================================
+   MYG CONNECT — Écran publicitaire TV (portrait 9:16)
+   -------------------------------------------------------------------------
+   POUR CHANGER LES COULEURS : modifie uniquement les lignes du bloc ":root"
+   juste en dessous. Tout le reste s'adapte automatiquement.
+   ========================================================================= */
+
+:root{
+  /* --- COULEURS (change ici) --- */
+  --ink:#070c1c;        /* fond nuit principal           */
+  --ink-2:#0e1838;      /* fond nuit secondaire (halo)   */
+  --paper:#f3f6ff;      /* texte clair                   */
+  --muted:#9fb0d8;      /* texte atténué (gris-bleu)     */
+  --cyan:#28e6ff;       /* accent principal              */
+  --amber:#ffb020;      /* accent promo (chaud)          */
+  --coral:#ff5a3c;      /* accent promo (chaud 2)        */
+  --line:rgba(140,170,230,.18); /* fines lignes          */
+
+  /* --- POLICES --- */
+  --disp:"Bricolage Grotesque","Trebuchet MS",sans-serif; /* titres */
+  --body:"Manrope","Segoe UI",system-ui,sans-serif;       /* texte  */
+
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+img{max-width:100%}
+
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--body);
+  overflow:hidden;            /* pas de scroll : écran fixe */
+}
+
+.stage{
+  position:relative;height:100%;width:100%;overflow:hidden;
+  background:radial-gradient(120% 80% at 50% -10%, var(--ink-2) 0%, var(--ink) 60%);
+}
+
+/* ---------- Slides (plein écran, en fondu) ---------- */
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:8vmin 7vmin;
+  opacity:0;transform:scale(1.03);
+  transition:opacity .9s ease, transform 1.2s ease;
+  pointer-events:none;
+}
+.slide.on{opacity:1;transform:scale(1);pointer-events:auto}
+
+.eyebrow{
+  font-weight:800;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--cyan);font-size:2.1vmin;margin:0 0 4vmin;
+}
+.eyebrow.amber{color:var(--amber)}
+
+h1{
+  font-family:var(--disp);font-weight:800;text-wrap:balance;
+  line-height:.96;margin:0;letter-spacing:-.01em;
+}
+.h-mid{font-size:7vmin}
+
+/* Slide marque */
+.brand{font-size:min(15vmin,15vw)}
+.brand .my{color:var(--paper)}
+.brand .g{color:var(--cyan)}
+.tag{font-family:var(--disp);font-weight:600;font-size:5.2vmin;margin-top:3vmin;color:var(--paper)}
+.sub{color:var(--muted);font-size:3vmin;margin-top:5vmin;font-weight:600}
+.langs{margin-top:7vmin;display:flex;gap:1.4vmin;flex-wrap:wrap;justify-content:center}
+.langs span{
+  border:1px solid var(--line);border-radius:999px;padding:1.2vmin 3vmin;
+  font-weight:800;font-size:2.2vmin;color:var(--muted);letter-spacing:.08em;
+}
+
+/* Slide promo */
+.promo .big{
+  font-family:var(--disp);font-weight:800;font-size:min(34vmin,34vw);line-height:.85;
+  background:linear-gradient(135deg,var(--amber),var(--coral));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 1.2vmin 3vmin rgba(255,90,60,.25));
+}
+.promo .on-what{font-size:6vmin;font-weight:800;font-family:var(--disp);margin-top:1vmin}
+.promo .list{color:var(--muted);font-size:3vmin;margin-top:4vmin;font-weight:700;line-height:1.5;max-width:70vmin}
+.pill{
+  margin-top:6vmin;display:inline-block;
+  background:linear-gradient(135deg,var(--amber),var(--coral));
+  color:#1a0a00;font-weight:800;font-size:2.4vmin;letter-spacing:.14em;
+  text-transform:uppercase;padding:1.6vmin 4.5vmin;border-radius:999px;
+}
+
+/* Slide téléphones */
+.rows{display:flex;flex-direction:column;gap:2.4vmin;margin-top:6vmin;width:100%;max-width:74vmin}
+.brandrow{
+  display:flex;align-items:center;justify-content:center;gap:3vmin;
+  font-family:var(--disp);font-weight:700;font-size:5.4vmin;
+  padding:2.2vmin 0;border-top:1px solid var(--line);
+}
+.brandrow:last-child{border-bottom:1px solid var(--line)}
+.dot{width:1.4vmin;height:1.4vmin;border-radius:50%;background:var(--cyan)}
+.note{color:var(--muted);font-size:2.8vmin;font-weight:700;margin-top:6vmin;letter-spacing:.04em}
+
+/* Slide services */
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:3vmin;margin-top:6vmin;width:100%;max-width:80vmin}
+.card{
+  border:1px solid var(--line);border-radius:3vmin;padding:5vmin 3vmin;
+  display:flex;flex-direction:column;align-items:center;gap:2.4vmin;
+  background:linear-gradient(180deg,rgba(40,230,255,.05),rgba(40,230,255,0));
+}
+.card svg{width:9vmin;height:9vmin;stroke:var(--cyan);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.card b{font-family:var(--disp);font-weight:700;font-size:3.2vmin;line-height:1.1}
+
+/* Slide contact */
+.contact .phone{
+  font-family:var(--disp);font-weight:800;font-size:min(11vmin,11vw);
+  color:var(--cyan);margin-top:2vmin;font-variant-numeric:tabular-nums;
+}
+.contact .web{font-family:var(--disp);font-weight:700;font-size:5vmin;margin-top:4vmin}
+.contact .place{color:var(--muted);font-size:3vmin;font-weight:700;margin-top:5vmin;letter-spacing:.04em}
+.contact .place strong{color:var(--paper)}
+
+/* ---------- Barre de progression + marque ---------- */
+.topbar{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;gap:1.2vmin;padding:4vmin 6vmin 0}
+.seg{height:.9vmin;flex:1;border-radius:999px;background:rgba(159,176,216,.22);overflow:hidden}
+.seg i{display:block;height:100%;width:0;background:var(--cyan);border-radius:999px}
+.seg.done i{width:100%}
+.seg.active i{animation:fill var(--dur) linear forwards}
+@keyframes fill{from{width:0}to{width:100%}}
+
+.footmark{
+  position:absolute;bottom:4vmin;left:0;right:0;z-index:5;text-align:center;
+  color:var(--muted);font-weight:800;letter-spacing:.26em;text-transform:uppercase;font-size:1.9vmin;
+}
+.footmark b{color:var(--paper)}
+
+@media (prefers-reduced-motion:reduce){
+  .slide{transition:opacity .4s linear;transform:none!important}
+}
