@@ -137,3 +137,38 @@ h1{
 @media (prefers-reduced-motion:reduce){
   .slide{transition:opacity .4s linear;transform:none!important}
 }
+
+/* ---------- Slides Réparation & Pièces détachées ---------- */
+
+/* Photo avant / après */
+.photo-ba{
+  width: auto;
+  max-width: 88vmin;
+  max-height: 34vh;      /* jamais plus d'un tiers de la hauteur de l'écran */
+  height: auto;
+  margin: 3vmin 0 0;
+  border-radius: 2vmin;
+  border: .4vmin solid var(--line);
+  box-shadow: 0 2vmin 5vmin rgba(0,0,0,.45);
+}
+
+/* Liste grise (même style que sur la slide Promo, utilisable partout) */
+.slide .list{
+  color: var(--muted);
+  font-size: 3vmin;
+  margin-top: 4vmin;
+  font-weight: 700;
+  line-height: 1.5;
+  max-width: 70vmin;
+}
+
+/* ---------- Cartes avec photo (Services & Pièces détachées) ---------- */
+.svc.photos{ max-width: 72vmin; }
+.svc.photos .card{ padding: 2vmin 2vmin 3vmin; gap: 2vmin; }
+.card .thumb{
+  width: 100%;
+  aspect-ratio: 4 / 3;     /* même format pour toutes les photos */
+  object-fit: cover;       /* recadre proprement sans déformer */
+  border-radius: 2vmin;
+  display: block;
+}
